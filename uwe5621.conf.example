@@ -1,0 +1,40 @@
+# UWE5621DS site configuration — TEMPLATE
+# ---------------------------------------------------------------------------
+# Copy to /etc/uwe5621.conf on the box and fill in YOUR values.
+# DO NOT commit the filled-in file: it contains your SSID / BSSID / UUID.
+#   sudo cp uwe5621.conf.example /etc/uwe5621.conf
+#   sudo nano /etc/uwe5621.conf
+# ---------------------------------------------------------------------------
+
+# Interface name of the UWE5621DS WiFi netdev
+UWE_WLAN_IF="wlan0"
+
+# Primary (verified working) WiFi profile.
+# Get the UUID with:  nmcli -f NAME,UUID,TYPE connection show
+UWE_PRIMARY_SSID="YOUR_2G_SSID"
+UWE_PRIMARY_UUID="00000000-0000-0000-0000-000000000000"
+UWE_PRIMARY_BSSID="AA:BB:CC:DD:EE:FF"
+
+# Optional low-priority fallback profile (leave UUID empty to disable)
+UWE_FALLBACK_SSID="YOUR_5G_SSID"
+UWE_FALLBACK_UUID=""
+
+# LAN gateway, used only for link-quality probes (never for routing changes)
+UWE_GATEWAY="192.168.1.1"
+
+# Conservative MTU for the G12A SDIO path
+UWE_MTU="1400"
+
+# Route metric for wlan0. Keep it HIGHER than eth0 (usually 100) so the
+# wired link stays the default route and SSH never drops.
+UWE_WIFI_ROUTE_METRIC="500"
+
+# kretprobe module built for the RUNNING kernel
+UWE_SKIP_KO="/opt/uwe5621/skip_inq_mode.ko"
+
+# In-kernel BT line discipline (must come from /lib/modules/$(uname -r))
+UWE_BT_KO="/lib/modules/$(uname -r)/kernel/drivers/net/wireless/uwe5622/tty-sdio/sprdbt_tty.ko"
+
+# Optional: guard that heals SDIO RX stalls. Disabled by default because it
+# unloads modules; enable only if you see "RX no progress" in dmesg.
+UWE_ENABLE_GUARD="0"

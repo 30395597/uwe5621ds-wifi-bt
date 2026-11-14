@@ -1,0 +1,46 @@
+# NetworkManager profile TEMPLATE for the primary 2.4G link.
+# ---------------------------------------------------------------------------
+# This is a reference of the exact settings that were validated on the box.
+# Normally tools/apply-nm-profiles.sh writes the profile for you and asks for
+# the passphrase interactively. If you prefer a static file:
+#   sudo cp config/nm-profile.nmconnection.example \
+#           /etc/NetworkManager/system-connections/YOUR_SSID.nmconnection
+#   sudo chmod 600 /etc/NetworkManager/system-connections/YOUR_SSID.nmconnection
+#   sudo nmcli connection reload
+# NEVER commit a file containing a real psk.
+# ---------------------------------------------------------------------------
+[connection]
+id=YOUR_2G_SSID
+uuid=GENERATE-WITH-uuidgen
+type=wifi
+interface-name=wlan0
+autoconnect=true
+autoconnect-priority=200
+autoconnect-retries=2
+
+[wifi]
+mode=infrastructure
+ssid=YOUR_2G_SSID
+band=bg
+bssid=AA:BB:CC:DD:EE:FF
+mtu=1400
+powersave=2
+
+[wifi-security]
+key-mgmt=wpa-psk
+auth-alg=open
+proto=rsn;
+pairwise=ccmp;
+group=ccmp;
+pmf=1
+psk=PUT-YOUR-PASSPHRASE-HERE
+
+[ipv4]
+method=auto
+route-metric=500
+
+[ipv6]
+addr-gen-mode=default
+method=disabled
+
+[proxy]

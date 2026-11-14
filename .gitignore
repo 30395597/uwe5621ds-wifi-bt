@@ -8,3 +8,20 @@
 Module.symvers
 modules.order
 src/firmware/
+
+# Site-specific config: contains SSID / BSSID / UUID / gateway. NEVER commit.
+uwe5621.conf
+*.nmconnection
+!*.nmconnection.example
+
+# Local working artifacts
+*.bak
+*.bak-*
+*.disabled
+*.tar.gz
+*.b64
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/

@@ -1,0 +1,14 @@
+[Unit]
+Description=UWE5621 WiFi RX-stall guard (soft-reset self heal)
+After=uwe5621-wifi.service network.target
+Wants=uwe5621-wifi.service
+
+[Service]
+Type=simple
+ExecStart=/bin/sh /opt/uwe5621/wifi-guard.sh
+Restart=always
+RestartSec=20
+Nice=-5
+
+[Install]
+WantedBy=multi-user.target

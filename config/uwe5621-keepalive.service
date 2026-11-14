@@ -1,0 +1,5 @@
+[Unit]
+Description=UWE5621DS conservative WiFi keepalive
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/uwe5621-keepalive.sh

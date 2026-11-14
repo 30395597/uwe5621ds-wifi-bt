@@ -1,0 +1,16 @@
+[Unit]
+Description=UWE5621DS Bluetooth (sprdbt_tty + kretprobe + hciattach)
+After=uwe5621-wifi.service
+Wants=uwe5621-wifi.service
+Before=bluetooth.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/uwe5621/bt-load.sh
+TimeoutStartSec=240
+KillMode=process
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target

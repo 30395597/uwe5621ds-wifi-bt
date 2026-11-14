@@ -1,0 +1,19 @@
+# Keep shell scripts LF on every platform. A CRLF in a .sh file makes
+# Linux bash fail with "\r: command not found" on the box.
+* text=auto
+
+*.sh        text eol=lf
+*.service   text eol=lf
+*.timer     text eol=lf
+*.py        text eol=lf
+*.c         text eol=lf
+Makefile    text eol=lf
+*.md        text eol=lf
+*.example   text eol=lf
+*.conf.example text eol=lf
+99-uwe5621-bt.sh text eol=lf
+
+# Firmware / calibration / prebuilt modules must never be touched.
+*.bin       binary
+*.ko        binary
+*.ini       -text

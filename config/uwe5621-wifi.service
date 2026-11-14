@@ -1,0 +1,13 @@
+[Unit]
+Description=Load UWE5621DS WiFi from in-kernel ophub 6.18.y modules
+After=systemd-udev-settle.service
+Before=NetworkManager.service
+Wants=systemd-udev-settle.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/uwe5621/load.sh
+
+[Install]
+WantedBy=multi-user.target

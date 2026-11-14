@@ -5,6 +5,11 @@
  *   1. HCI_OP_WRITE_INQUIRY_MODE    (0x0C45) — chip ignores → timeout
  *   2. HCI_OP_WRITE_DEF_LINK_POLICY (0x080F) — chip returns EINVAL
  *
+ * opcode = (OGF << 10) | OCF, so:
+ *   0x0C45 = (0x03 << 10) | 0x0045  Host Controller & Baseband commands
+ *   0x080F = (0x02 << 10) | 0x000F  Link Control commands
+ * Do NOT swap them: 0x0C45 is NOT "Write Default Link Policy".
+ *
  * Kernel 6.18+ removed HCI_QUIRK_NO_PARK_LINK_POLICY and CONFIG_BT_DEBUGFS
  * is typically not enabled in ophub builds. This module uses kretprobe to
  * intercept and override the return values of the relevant init functions.
